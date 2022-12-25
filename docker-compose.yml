@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:5.0.14
+    env_file: ./.env
+    ports:
+      - '${MONGO_LOCAL_PORT}:$MONGO_DOCKER_PORT'
+    environment:
+      - MONGO_DB=$MONGO_DB
+
+  app:
+    depends_on:
+      - mongo
+    image:  'octopy/uav-trajectory-calculation'
+    build: .
+    env_file: ./.env
+    ports:
+      - '${SPRING_LOCAL_PORT}:$SPRING_DOCKER_PORT'
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.mongodb.database" : "$MONGO_DB"
+      }'
