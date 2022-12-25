@@ -16,4 +16,4 @@ spring.datasource.mongodb.database=DB_NAME
 4) Run project
 ___
 Besides, You can **pull image from Docker Hub** and start it with command. <br>
-```docker pull octopy/uav-trajectory-calculation``` -> ```docker-compose up```
+```docker pull octopy/uav-trajectory-calculation:latest``` -> ```docker-compose up```
